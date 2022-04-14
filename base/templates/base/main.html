@@ -16,9 +16,10 @@
 
     <style>
         body {
-            background-color: #FAFAFA;
+            background-color: var(--f1-color);
             font-family: 'Nunito', sans-serif;
             padding-top: 50px;
+            color: var(--f8-color);
         }
 
         h1,
@@ -43,7 +44,7 @@
         .container {
             max-width: 550px;
             margin: auto;
-            background-color: #fff;
+            background-color: var(--f2-color);
             -webkit-box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
             box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
         }
@@ -59,7 +60,7 @@
             color: #fff;
             padding: 10px;
             border-radius: 5px 5px 0 0;
-            background: linear-gradient(90deg, #AFEEEE 0%, #40E0D0 43%, #40E0D0 100%);
+            background: var(--f3-color);
         }
 
         .header-bar a {
@@ -71,7 +72,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background-color: #fff;
+            background-color: var(--f2-color);
             border-top: 1px solid #dfe4ea;
             overflow: hidden;
         }
@@ -83,14 +84,14 @@
 
         .task-title a {
             text-decoration: none;
-            color: #4b5156;
+            color:var(--f6-color);
             margin-left: 10px;
         }
 
         .task-complete-icon {
             height: 20px;
             width: 20px;
-            background-color: rgb(105, 192, 105);
+            background-color: var(--f4-color);
             border-radius: 50%;
         }
 
@@ -104,7 +105,7 @@
         .delete-link {
             text-decoration: none;
             font-weight: 900;
-            color: #cf4949;
+            color: var(--f5-color);
             font-size: 22px;
             line-height: 0;
             padding: 20px 0px;
@@ -143,7 +144,7 @@
 
 
         #add-link {
-            color: #EB796F;
+            color: var(--f5-color);
             text-decoration: none;
             font-size: 42px;
             text-shadow: 1px 1px #81413b;
@@ -165,6 +166,7 @@
         input[type=text],
         input[type=password],
         textarea {
+            background-color: var(--f1-color);
             border: 1px solid #757575;
             border-radius: 5px;
             padding: 10px;
@@ -183,8 +185,8 @@
 
         .button {
             border: 1px solid #757575;
-            background-color: #FFF;
-            color: #EB796F;
+            background-color:  var(--f1-color);
+            color:  var(--f5-color);
             padding: 10px;
             font-size: 14px;
             border-radius: 5px;
@@ -195,6 +197,45 @@
         .card-body {
             padding: 20px;
         }
+
+        /* кнопка ночного режима */
+        #night_mode {
+            background-color: #696969;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+        }
+
+        /* light mode  */
+        :root{
+            --f1-color: #FFF;
+            --f2-color: #FFF ;
+            --f3-color: linear-gradient(90deg, #AFEEEE 0%, #40E0D0 43%, #40E0D0 100%);
+            --f4-color: rgb(105, 192, 105);
+            --f5-color: #EB796F;
+            --f6-color: #4b5156;
+            --f7-color: #EB796F;
+            --f8-color: #0F0F0F;
+        }
+        /* night mode  */
+        .night-theme{
+            --f1-color: #393E46;
+            --f2-color: #222831;
+            --f3-color: linear-gradient(90deg, #222831 0%, #0F0F0F 43%, #0F0F0F 100%);
+            --f4-color: #80AC7B;
+            --f5-color: #FFF;
+            --f6-color: #FFF;
+            --f7-color: #D5BFBF;
+            --f8-color: #FFF;
+        }
     </style>
 </head>
 
@@ -203,6 +244,32 @@
     <div class="container">
         {% block content %} {% endblock content %}
     </div>
+
+    <div >
+      <button type="button" id="night_mode">night mode!</button>
+    </div>
+
+     <script>
+         var button = document.getElementById("night_mode");
+
+         if(localStorage.getItem("theme") == null){
+             localStorage.setItem("theme","light");
+         }
+
+         let localData = localStorage.getItem("theme");
+         if(localData == "night"){
+             document.body.classList.toggle("night-theme");
+         }
+
+         button.onclick = function (){
+             document.body.classList.toggle("night-theme");
+             if(document.body.classList.contains("night-theme")){
+                 localStorage.setItem("theme","night");
+             }else{
+                 localStorage.setItem("theme","light");
+             }
+         }
+     </script>
 
 </body>
 
