@@ -5,6 +5,23 @@
     <a href="{% url 'tasks' %}">&#8592; Back</a>
 </div>
 
+<div class="due_date">
+    <form>
+        Due date:
+    <style>
+    ::-webkit-datetime-edit {
+    color: #999;
+    background-color: white;
+    
+}
+
+    </style>            
+    <input type="date" name="input" placeholder="YYYY-MM-DD" lang="en"> 
+    </form>
+
+    
+
+</div>
 
 <div class="card-body">
     <form method="POST" action="">
