@@ -164,6 +164,7 @@
         }
 
         input[type=text],
+        input[type=date],
         input[type=password],
         textarea {
             background-color: var(--f1-color);
@@ -246,7 +247,11 @@
     </div>
 
     <div >
+<<<<<<< HEAD
       <button type="button" id="night_mode">Night Mode</button>
+=======
+        <input onclick="change()" type="button" id="night_mode" value="Night mode"></input>
+>>>>>>> 56e35eeb388454528693fb9965640b8d6baa838f
     </div>
 
      <script>
@@ -257,16 +262,22 @@
          }
 
          let localData = localStorage.getItem("theme");
+         var elem = document.getElementById("night_mode");
+
          if(localData == "night"){
              document.body.classList.toggle("night-theme");
+             elem.value = "light mode!";
          }
 
          button.onclick = function (){
              document.body.classList.toggle("night-theme");
+
              if(document.body.classList.contains("night-theme")){
                  localStorage.setItem("theme","night");
+                 elem.value = "light mode!";
              }else{
                  localStorage.setItem("theme","light");
+                 elem.value = "night mode!";
              }
          }
      </script>
